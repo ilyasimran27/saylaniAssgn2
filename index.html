@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Task1</h2>
+    <p id="task1"></p>
+    <h2>Task2</h2>
+    <p id="task2"></p>
+    <h2>Task3</h2>
+    <input type="number" id="inpt1" onchange="getInput()" />
+    <input type="number" id="inpt2" onchange="getInput()" />
+    <input type="number" id="inpt3" onchange="getInput()" />
+    <p id="task3"></p>
+    <h2>Task4</h2>
+    <input type="number" id="inptYear" onchange="getLeapYear()" />
+    <p id="task4"></p>
+    <h2>Task5</h2>
+
+    <p id="task5"></p>
+    <h2>Task6</h2>
+    <input type="number" id="randomnumber" />
+    <button onclick="checkRandomNumber()">check random number</button>
+    <h2>Task8</h2>
+
+    <p id="task8"></p>
+    <h2>Task9 and task 11</h2>
+    <input type="number" id="num1" />
+    <input type="number" id="num2" />
+    <button onclick='calculation("multiply")'>Multiply</button>
+    <button onclick='calculation("divide")'>Divide</button>
+    <button onclick='calculation("add")'>Sum</button>
+    <p id="task9"></p>
+    <h2>task10</h2>
+    <p><input id="c" onkeyup="convert('C')" /> degrees Celsius</p>
+
+    <p><input id="f" onkeyup="convert('F')" /> degrees Fahrenheit</p>
+  </body>
+  <script>
+    let randomNumber = Math.floor(Math.random() * 11);
+    var days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    let year = "";
+    var time = new Date();
+
+    var day = days[time.getDay()];
+    let minuteAndSeconds = time.toLocaleString("en-US", {
+      minute: "numeric",
+      second: "numeric",
+    });
+    let hour = time.toLocaleString("en-US", { hour: "numeric", hour12: true });
+    document.getElementById("task1").innerHTML = `Today is : ${day}`;
+    document.getElementById("task1").innerHTML += `<br/>Current time:${
+      hour + ":" + minuteAndSeconds
+    }`;
+    document.getElementById("task2").innerHTML = `${
+      time.getMonth() + "/" + time.getDate() + "/" + time.getFullYear()
+    }`;
+
+    function getInput(e) {
+      const side1 = Number(document.getElementById("inpt1").value);
+      const side2 = Number(document.getElementById("inpt2").value);
+      const side3 = Number(document.getElementById("inpt3").value);
+      const s = (side1 + side2 + side3) / 2;
+
+      //calculate the area
+      const areaValue = Math.sqrt(s * (s - side1) * (s - side2) * (s - side3));
+
+      console.log(`The area of the triangle is ${areaValue}`);
+      setTimeout(() => {
+        document.getElementById("task3").innerHTML = areaValue;
+      }, 2000);
+    }
+    function getLeapYear() {
+      let year = Number(document.getElementById("inptYear").value);
+      let condition = year % 100 === 0 ? year % 400 === 0 : year % 4 === 0;
+      if (condition) {
+        document.getElementById("task4").innerHTML = "Autumn";
+      } else {
+        document.getElementById("task4").innerHTML = "Summer";
+      }
+    }
+    for (var year1 = 2014; year1 <= 2050; year1++) {
+      var d = new Date(year1, 0, 1);
+      if (d.getDay() === 0)
+        document.getElementById("task5").innerHTML += `<br/>${year1}`;
+    }
+    function checkRandomNumber() {
+      console.log("ramdomnumber===>", randomNumber);
+      var number = Number(document.getElementById("randomnumber").value);
+      if (number !== randomNumber) {
+        alert("wrong number");
+      } else {
+        alert("You are win");
+      }
+    }
+    //task8
+    today = new Date();
+    var cmas = new Date(today.getFullYear(), 8, 14);
+    if (today.getMonth() == 7 && today.getDate() > 14) {
+      cmas.setFullYear(cmas.getFullYear() + 1);
+    }
+    var one_day = 1000 * 60 * 60 * 24;
+    document.getElementById("task8").innerHTML =
+      Math.ceil((cmas.getTime() - today.getTime()) / one_day) +
+      " days left until 14 august!";
+    //task9
+    function calculation(operation) {
+      console.log("operation===>", operation);
+      var num1 = Number(document.getElementById("num1").value);
+      var num2 = Number(document.getElementById("num2").value);
+      if (operation == "multiply") {
+        document.getElementById("task9").innerHTML = num1 * num2;
+      }
+      else if(operation=="add"){
+          if(num1==num2){
+            document.getElementById("task9").innerHTML = num1 + num2+num1;
+          }
+          else{
+            document.getElementById("task9").innerHTML = num1 + num2;
+          }
+      }
+      else {
+        document.getElementById("task9").innerHTML = num1 / num2;
+      }
+    }
+    //task10
+    function convert(degree) {
+      var x;
+      if (degree == "C") {
+        x = (document.getElementById("c").value * 9) / 5 + 32;
+        document.getElementById("f").value = Math.round(x);
+      } else {
+        x = ((document.getElementById("f").value - 32) * 5) / 9;
+        document.getElementById("c").value = Math.round(x);
+      }
+    }
+  </script>
+</html>
