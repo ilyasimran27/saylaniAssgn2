@@ -39,6 +39,31 @@
     <p><input id="c" onkeyup="convert('C')" /> degrees Celsius</p>
 
     <p><input id="f" onkeyup="convert('F')" /> degrees Fahrenheit</p>
+
+    <h2>task 12</h2>
+    <input type="number" id="inpttask12" placeholder="Enter number" />
+    <button onclick="task12()">Submit</button>
+    <p id="task12"></p>
+    <h2>task 13</h2>
+    <input type="number" id="inpttask131" placeholder="Enter number" />
+    <input type="number" id="inpttask132" placeholder="Enter number" />
+    <input type="number" id="inpttask133" placeholder="Enter number" />
+    <button onclick="task13()">Submit</button>
+    <p id="task13"></p>
+    <h2>task 14</h2>
+    <input type="text" id="inpttask14" placeholder="Enter string" />
+    <button onclick="task14()">Submit</button>
+    <p id="task14"></p>
+    <h2>task 15</h2>
+    <input type="number" id="inpttask15" placeholder="Enter days " />
+    <button onclick="task15()">submit</button>
+    <p id="task15"></p>
+    <h2>task16</h2>
+    <p id="task16"></p>
+    <h2>task18</h2>
+    <input type="number" id="inpttask18" placeholder="Enter number " />
+    <button onclick="task18()">submit</button>
+    <p id="task18"></p>
   </body>
   <script>
     let randomNumber = Math.floor(Math.random() * 11);
@@ -122,16 +147,13 @@
       var num2 = Number(document.getElementById("num2").value);
       if (operation == "multiply") {
         document.getElementById("task9").innerHTML = num1 * num2;
-      }
-      else if(operation=="add"){
-          if(num1==num2){
-            document.getElementById("task9").innerHTML = num1 + num2+num1;
-          }
-          else{
-            document.getElementById("task9").innerHTML = num1 + num2;
-          }
-      }
-      else {
+      } else if (operation == "add") {
+        if (num1 == num2) {
+          document.getElementById("task9").innerHTML = num1 + num2 + num1;
+        } else {
+          document.getElementById("task9").innerHTML = num1 + num2;
+        }
+      } else {
         document.getElementById("task9").innerHTML = num1 / num2;
       }
     }
@@ -146,5 +168,78 @@
         document.getElementById("c").value = Math.round(x);
       }
     }
+    function task12() {
+      var inp = Number(document.getElementById("inpttask12").value);
+      if ((inp > 20 && inp < 100) || inp == 400) {
+        document.getElementById("task12").innerHTML =
+          "The number is within 20 of 100 or 400.";
+      } else {
+        document.getElementById("task12").innerHTML =
+          "The number is not within 20 of 100 or 400.";
+      }
+    }
+    function task13() {
+      var inpt1 = Number(document.getElementById("inpttask131").value);
+      var inpt2 = Number(document.getElementById("inpttask132").value);
+      var inpt3 = Number(document.getElementById("inpttask133").value);
+      if (inpt1 > inpt2 && inpt1 > inpt3) {
+        document.getElementById("task13").innerHTML =
+          "this is gretest number" + inpt1;
+      } else if (inpt2 > inpt3 && inpt2 > inpt1) {
+        document.getElementById("task13").innerHTML =
+          "this is gretest number" + inpt2;
+      } else if (inpt3 > inpt2 && inpt3 > inpt1) {
+        document.getElementById("task13").innerHTML =
+          "this is gretest number" + inpt3;
+      }
+    }
+    function task14() {
+      const mySentence = document.getElementById("inpttask14").value;
+      console.log('my secnta')
+      const words = mySentence.split(" ");
+      let word2=""
+
+      words
+        .map((word) => {
+          word2=word2 + word[0].toUpperCase() + word.substring(1)+" ";
+        })
+        .join(" ");
+        document.getElementById("task14").innerHTML = word2;
+    }
+    function task15(){
+    var days = Number(document.getElementById('inpttask15').value)
+    var hourandmin =document.getElementById('task15')
+    
+    hourandmin.innerHTML="hours="+days*24+" minutes="+days*24*60
+ 
+
+
+
+
+}
+   //task 16
+   var array = [5, 7, 2]
+if (array[0] > array[1] && array[0] > array[2]) {
+    console.log(`The greatest number is ${array[0]}`)
+    array[1] = array[0]
+    array[2] = array[0]
+} else if (array[1] > array[2] && array[1] > array[0]) {
+    console.log(`The greatest number is ${array[1]}`)
+    array[0] = array[1]
+    array[2] = array[1]
+} else if (array[2] > array[1] && array[2] > array[0]) {
+    console.log(`The greatest number is ${array[2]}`)
+    array[1] = array[2]
+    array[0] = array[2]
+}
+document.getElementById("task16").innerHTML=array
+function task18() {
+    var kth = Number(document.getElementById('inpttask18').value)
+    var array = [1, 10, 2, 3, 88, 44, 64, 37, 22, 19, 55, 56, 63, 24]
+    var sortedArray = array.sort(function (a, b) { return b - a })
+   document.getElementById("task18").innerHTML=sortedArray
+}
+
+   
   </script>
 </html>
